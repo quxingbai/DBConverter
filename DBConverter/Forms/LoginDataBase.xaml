@@ -1,0 +1,25 @@
+﻿<Window x:Class="DBConverter.Forms.LoginDataBase"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DBConverter.Forms"
+        xmlns:qc="clr-namespace:QXB.Libs.Core.QControls;assembly=QXB.Libs.Core.QControls"
+        xmlns:c="clr-namespace:DBConverter.Controls"
+        mc:Ignorable="d"
+        Title="LoginDataBase" Height="250" Width="400" Background="#FFF3F3F3">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Margin="10" Background="White">
+
+        </Grid>
+        <Grid Margin="10" Grid.Row="1" Background="White">
+            <StackPanel Margin="5">
+                <c:EasyButton Content="AAA"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

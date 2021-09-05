@@ -1,0 +1,124 @@
+﻿<Window x:Class="DBConverter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DBConverter"
+        xmlns:c="clr-namespace:DBConverter.Controls"
+        mc:Ignorable="d"
+        xmlns:qc="clr-namespace:QXB.Libs.Core.QControls;assembly=QXB.Libs.Core.QControls"
+        Title="数据库转换器" Height="450" Width="800" WindowState="Maximized" Background="{DynamicResource PANEL.Background}">
+    <Window.Resources>
+        <SolidColorBrush Color="DarkGray" x:Key="PANEL.BorderColor"/>
+        <SolidColorBrush Color="#FF2D2D30" x:Key="PANEL.Background"/>
+        <Style TargetType="c:IconButton" x:Key="ICONBUTTON.HeadControl">
+            <Setter Property="Foreground" Value="LightGray"/>
+            <Setter Property="Width" Value="70"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Height" Value="70"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Background" Value="#FF1E1E1E"/>
+            <Setter Property="Corner" Value="5"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF007ACC"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+                <Trigger Property="IsMouseCaptured" Value="True">
+                    <Setter Property="Background" Value="#FF005893"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border BorderBrush="{DynamicResource PANEL.BorderColor}" BorderThickness="0,0,0,1">
+            <Grid>
+                <WrapPanel VerticalAlignment="Center" Margin="10">
+                    <c:IconButton  Tag="RELOGIN"  Icon="/Icons/Icon_ReSelected.png" Title="重新登录" Style="{DynamicResource ICONBUTTON.HeadControl}" Click="BT_HeadButtons_Click"/>
+                </WrapPanel>
+            </Grid>
+        </Border>
+        <Border Grid.Row="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="350"/>
+                </Grid.ColumnDefinitions>
+                <Border BorderBrush="{DynamicResource PANEL.BorderColor}" BorderThickness="0,0,1,0">
+                    <c:DataBaseList x:Name="LIST_DBList" SelectionChanged="LIST_DBList_SelectionChanged">
+                        <c:DataBaseList.ContextMenu>
+                            <qc:QContextMenu>
+                                <qc:QMenuItem Header="将选中数据库转化为SqlServer语句" Tag="TOSQLSERVER" Click="MENUITEM_DBList_Click"/>
+                            </qc:QContextMenu>
+                        </c:DataBaseList.ContextMenu>
+                    </c:DataBaseList>
+                </Border>
+                <Border Grid.Column="1" BorderBrush="{DynamicResource PANEL.BorderColor}" BorderThickness="0,0,1,0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <qc:QPageTabControl BorderThickness="0" Name="TC_Pages">
+                        </qc:QPageTabControl>
+                        <ListBox Name="LIST_Log" Grid.Row="1" Background="Transparent" BorderThickness="0">
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ListBoxItem">
+                                                <Border>
+                                                    <ContentPresenter/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                        </ListBox>
+                    </Grid>
+                </Border>
+                <Border Grid.Column="2" BorderBrush="{DynamicResource PANEL.BorderColor}" BorderThickness="1,0,0,0">
+                    <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                        <c:DataBaseList x:Name="LIST_DBInfoList" MouseDoubleClick="LIST_DBInfoListItem_MouseDoubleClick" SelectionMode="Single">
+                            <c:DataBaseList.ItemTemplate>
+                                <DataTemplate>
+                                    <ContentControl>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Border Margin="0" Padding="3.5" Grid.Column="0">
+                                                <Image Name="Icon" Stretch="Uniform" RenderOptions.BitmapScalingMode="Fant"/>
+                                            </Border>
+                                            <ContentControl Grid.Column="1" Name="content" VerticalAlignment="Center" Margin="2,0,0,0" Content="{Binding Name}"/>
+                                        </Grid>
+                                    </ContentControl>
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding Type}" Value="Table">
+                                            <Setter Property="Image.Source" Value="/Icons/icon_Table.png" TargetName="Icon"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Type}" Value="Procedure">
+                                            <Setter Property="Image.Source" Value="/Icons/icon_Procedure.png" TargetName="Icon"/>
+                                            <Setter Property="Foreground" Value="#FFFF5D00" TargetName="content"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Type}" Value="Function">
+                                            <Setter Property="Image.Source" Value="/Icons/icon_Function.png" TargetName="Icon"/>
+                                            <Setter Property="Foreground" Value="#FFFF5D00" TargetName="content"/>
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                            </c:DataBaseList.ItemTemplate>
+                        </c:DataBaseList>
+                    </ScrollViewer>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

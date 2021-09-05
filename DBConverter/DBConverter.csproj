@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Icons\icon_database.png" />
+    <None Remove="Icons\icon_Function.png" />
+    <None Remove="Icons\icon_Procedure.png" />
+    <None Remove="Icons\Icon_ReSelected.png" />
+    <None Remove="Icons\icon_Table.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Base\DAL\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="8.0.26" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="QXB.Libs.Core.QControls">
+      <HintPath>..\..\QXB.Libs.Core\QXB.Core.Demo\bin\Debug\net5.0-windows\QXB.Libs.Core.QControls.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Icons\icon_DataBase.png" />
+    <Resource Include="Icons\icon_Function.png" />
+    <Resource Include="Icons\icon_Procedure.png">
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icons\Icon_ReSelected.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icons\icon_Table.png" />
+  </ItemGroup>
+
+</Project>

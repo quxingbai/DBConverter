@@ -1,0 +1,13 @@
+﻿<Application x:Class="DBConverter.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:DBConverter"
+             StartupUri="MainWindow.xaml">
+
+    <Application.Resources>
+        <SolidColorBrush x:Key="TextLine.Focused.BorderBrush" Color="Black"/>
+        <SolidColorBrush x:Key="TextLine.Static.BorderBrush" Color="#FF6A6A6A"/>
+        <PathGeometry x:Key="Path.LeftArror" Figures="M5,0 l-5,5 l5,5"/>
+
+    </Application.Resources>
+</Application>

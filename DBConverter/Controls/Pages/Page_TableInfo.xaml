@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="DBConverter.Controls.Pages.Page_TableInfo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DBConverter.Controls.Pages"
+             mc:Ignorable="d" 
+             xmlns:m="clr-namespace:DBConverter.Base.Model"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <ListBox Background="Transparent" BorderThickness="0" BorderBrush="White" Name="LIST_Columns" Foreground="LightGray" FontSize="17">
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="{x:Type m:ColumnBasicModel}">
+                    <Grid MinWidth="900" HorizontalAlignment="Left">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <ContentControl Content="{Binding Name}"/>
+                        <ContentControl Grid.Column="1" Content="{Binding DataType.FullName}"/>
+                        <ContentControl Grid.Column="2" Content="{Binding Tip}"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                    <Setter Property="Margin" Value="5,5,0,0"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListBoxItem">
+                                <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                    <Grid>
+                                        <ContentPresenter/>
+                                    </Grid>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+    </Grid>
+</UserControl>
